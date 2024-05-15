@@ -1,0 +1,35 @@
+all STL forward_list function are listed here 
+
+forward_list<int> list={10,11,12,13,14,15,16,22,33,44,55,66};
+
+forward_list<int>::iterator i=list.before_begin();		//used to insert at top
+i=list.begin();
+i=list.end();
+
+i=list.before_begin();
+list.insert_after(i,100);  	// insert at top
+i=list.insert_after(i,100);	// insert at top and will return the index and the iterator points to new added value
+
+list.push_front(20);		//insert at top 
+list.pop_front();		//remove from top
+
+we cannot add data at the end
+if we want to add then we need to use a trick of two iterator and one is moving behind the other
+
+list.front();		//this will return the top element/data
+
+list.remove(11);	//this will delete the data from list
+
+list.remove_if(whatever);	//remove_if will taverse the list and will remove if it gets 1
+
+list.erase_after(i);
+
+list.erase_after(s,e);		//erase in between iterator s and e.
+
+list.unique();			//delete the duplicate consecutive numbers/data
+
+list.sort();		//this will sort the list
+
+
+
+
