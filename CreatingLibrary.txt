@@ -1,0 +1,30 @@
+1) create object file - 
+same for windows and linux 
+gcc -c *.c	//for c files	
+g++ -c *.cpp	//for cpp files
+
+
+2) Pack them 
+windows
+ar rcs -L ..\lib\libMyLibrary.lib *.o
+
+linux 
+g++ -L ../lib/libMyLibrary.o -I ../include
+
+
+3) compile test case
+windows 
+g++ eg1.cpp -o eg1.exe -L ..\lib -l MyLibrary -w
+
+linux
+g++ eg1.cpp -o eg1.out -L ..\lib -l MyLibrary -w
+
+
+-c to compile to object file ,
+*.c to provide all files with extension c ,
+-L to provide library folder ,
+-l to provide library file ,
+-I to provide neccessay header files to include ,
+-Wall to show all warinings ,
+-Werror show all warinings as error,
+-std=c++0x to add  upcoming ISO C++ standard features,
