@@ -1,3 +1,8 @@
+//creating a abstract class as TMList to impose guidelines 
+//creating TMForwardList and TMArrayList as derived class of TMList 
+//overloading operators 
+//creating iterator class and iterable class to iterate to TMArrayList and TMForward_list
+
 #include<iostream>
 using namespace std;
 
@@ -21,36 +26,43 @@ Iterator ()
 this->releaseIteratorAfterIteration=1;
 this->iterator=NULL;
 }
+
 Iterator(Iterator *iterator)
 {
 this->releaseIteratorAfterIteration=1;
 this->iterator=iterator;
 }
+
 Iterator(const Iterator &other)
 {
 this->releaseIteratorAfterIteration=1;
 this->iterator=other.iterator;
+
 }
 Iterator & operator=(const Iterator &other)
 {
 this->iterator=other.iterator;
 return *this;
 }
+
 virtual int hasMoreElements()
 {
 if(iterator!=NULL) return this->iterator->hasMoreElements();
 return 0;
 }
+
 virtual int next()
 {
 //here also we can add the code to delete the iterator and release the dynamically allocated memory 
 if(iterator!=NULL) return this->iterator->next();
 return 0;
 }
+
 virtual ~Iterator()
 {
 if(this->releaseIteratorAfterIteration==1) delete this->iterator;
 }
+
 void setReleaseIteratorAfterIteration(int releaseIteratorAfterIteration)
 {
 this-> releaseIteratorAfterIteration = releaseIteratorAfterIteration;
@@ -134,15 +146,18 @@ TMArrayListIterator(const TMArrayListIterator &other)
 {
 this->index=other.index;
 }
+
 TMArrayListIterator & operator=(const TMArrayListIterator &other)
 {
 this->index=other.index;
 return *this;
 }
+
 int hasMoreElements()
 {
 return this->index<size;
 }
+
 int next()
 {
 //here also we can introduce the code to release memor just after the iteration is completed.
@@ -192,6 +207,7 @@ void update(int index,int data,int *success);
 void removeAll();
 void clear();
 };
+
 bool TMArrayList::addRow()
 {
 if(capacity%100==0)
@@ -210,6 +226,7 @@ if(this->ptr[i]==NULL) return false;
 this->capacity=this->capacity+10;
 return true;
 }
+
 TMArrayList::TMArrayList()
 {
 this->allocationFlag=0;		//for handling issue related to operator +
@@ -218,6 +235,7 @@ this->ptr[0]=new int[10];
 this->capacity=10;
 this->size=0;
 }
+
 TMArrayList::TMArrayList(int bufferSize)
 {
 this->allocationFlag=0;		//for handling issue related to operator +
@@ -244,6 +262,7 @@ this->capacity=rows*10;
 this->size=0;
 }
 }
+
 TMArrayList::TMArrayList(const TMArrayList &other)
 {
 this->allocationFlag=0;		//for handling issue related to operator +
@@ -301,7 +320,6 @@ this->add(other.get(i,&succ),&succ);
 }
 }
 
-
 TMArrayList::~TMArrayList()
 {
 if(this->allocationFlag==0)		//for handling issue related to operator +
@@ -316,6 +334,7 @@ delete [] this->ptr[j];
 delete [] this->ptr;
 }
 }
+
 TMArrayList & TMArrayList::operator=(const TMArrayList &other)	
 {
 if(other.allocationFlag==0)		//for handling issue related to operator +
@@ -543,15 +562,18 @@ TMForwardListIterator(const TMForwardListIterator &other)
 {
 this->ptr=other.ptr;
 }
+
 TMForwardListIterator & operator=(const TMForwardListIterator &other)
 {
 this->ptr=other.ptr;
 return *this;
 }
+
 int hasMoreElements()
 {
 return this->ptr!=NULL;
 }
+
 int next()
 {
 //here also we can introduce the code to release memor just after the iteration is completed.
@@ -976,6 +998,5 @@ cout<<"**********************"<<endl;
 cout<<iterator1.next()<<endl;
 cout<<iterator2.next()<<endl;
 cout<<iterator3.next()<<endl;
-
 return 0;
 }
