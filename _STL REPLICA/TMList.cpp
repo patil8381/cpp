@@ -87,6 +87,8 @@ TMList(const TMList &other)
 };
 
 /*
+these functions will also be defined to improve usability->
+
 default constructor (Done)
 parameterised constructor (Done)
 copy constructor (Done)
